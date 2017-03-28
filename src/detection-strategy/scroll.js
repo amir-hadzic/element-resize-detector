@@ -383,10 +383,18 @@ module.exports = function(options) {
             rootContainer.appendChild(containerContainer);
 
             function onExpandScroll() {
+                if (!getState(element)) {
+                  debug("Aborting because element has been uninstalled");
+                  return;
+                }
                 getState(element).onExpand && getState(element).onExpand();
             }
 
             function onShrinkScroll() {
+                if (!getState(element)) {
+                  debug("Aborting because element has been uninstalled");
+                  return;
+                }
                 getState(element).onShrink && getState(element).onShrink();
             }
 
